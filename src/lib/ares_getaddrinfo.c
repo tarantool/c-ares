@@ -772,11 +772,14 @@ static int as_is_first(const struct host_query* hquery)
   char* p;
   int ndots = 0;
   size_t nname = hquery->name?strlen(hquery->name):0;
-  for (p = hquery->name; *p; p++)
+  if (hquery->name)
     {
-      if (*p == '.')
+      for (p = hquery->name; *p; p++)
         {
-          ndots++;
+          if (*p == '.')
+            {
+              ndots++;
+            }
         }
     }
   if (nname && hquery->name[nname-1] == '.')
